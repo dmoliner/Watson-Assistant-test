@@ -22,4 +22,9 @@
   // Initialize all modules
   ConversationPanel.init();
   PayloadPanel.init();
-})();
+  console.log("cargando..");
+  /*var cheerio = require('cheerio')
+  var $ = cheerio.load(mainPageContent);
+  $('iframe').attr('https://www.google.com/');
+  */
+  })();

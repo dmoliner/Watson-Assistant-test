@@ -48,7 +48,10 @@ var PayloadPanel = (function() {
   // reduced width (default for large resolution apps)
   // hidden (default for small/mobile resolution apps)
   // full width (regardless of screen size)
-  function togglePanel(event, element) {
+  function togglePanel(){
+    $('#payload-column').toggle();
+  }
+  /*function togglePanel(event, element) {
     var payloadColumn = document.querySelector(settings.selectors.payloadColumn);
     if (element.classList.contains('full')) {
       element.classList.remove('full');
@@ -58,7 +61,7 @@ var PayloadPanel = (function() {
       payloadColumn.classList.add('full');
     }
   }
-
+*/
   // Set up callbacks on payload setters in Api module
   // This causes the displayPayload function to be called when messages are sent / received
   function payloadUpdateSetup() {

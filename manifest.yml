@@ -4,7 +4,7 @@ declared-services:
     label: conversation
     plan: free
 applications:
-- name: watson-conversation-slots-intro
+- name: wcsi-conversation-service
   command: npm start
   path: .
   memory: 256M
