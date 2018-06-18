@@ -15,7 +15,8 @@
  */
 /* eslint no-undef: 0 */
 
-casper.test.begin('Watson Assistant simple Demo', 5, function suite(test) {
+casper.options.waitTimeout = 10000;
+casper.test.begin('Conversation Slots intro', 5, function suite(test) {
   var baseHost = 'http://localhost:3000';
 
   function testWelcomeMessageExists() {
@@ -26,20 +27,20 @@ casper.test.begin('Watson Assistant simple Demo', 5, function suite(test) {
 
   function testEnterMessageClick() {
     casper.then(function () {
-      this.sendKeys('#textInput', 'turn the wipers on');
+      this.sendKeys('#textInput', 'I want a large vegetarian pizza');
       this.sendKeys('#textInput', casper.page.event.key.Enter);
     });
     casper.waitForSelector('.from-user', function () {
       test.assertExists('.message-inner', 'Message sent');
-      test.assertTextExists('turn the wipers on', 'Message in bubble');
-      casper.waitForText('I\'ll turn on the wipers for you.');
+      test.assertTextExists('I want a large vegetarian pizza', 'Message in bubble');
+      casper.waitForText('Any extra toppings?');
     });
   }
 
   casper.start(baseHost, function () {
     casper.test.comment('Starting Testing');
-    test.assertHttpStatus(200, 'assistant-simple is up');
-    test.assertTitle('Watson Assistant Chat App', 'Title is correct');
+    test.assertHttpStatus(200, 'conversation-simple is up');
+    test.assertTitle('Conversation Chat App', 'Title is correct');
 
     testWelcomeMessageExists();
     testEnterMessageClick();
