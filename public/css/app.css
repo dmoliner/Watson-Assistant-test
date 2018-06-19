@@ -3,7 +3,13 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-
+label{
+  font-weight: 0px;
+}
+.carga{
+  width: 200px;
+  height: 200px;
+}
 body {
   font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
   margin: 0;
@@ -68,7 +74,7 @@ div {
 }
 
 #chat-column-holder {
-  text-align: center;
+  text-align: left;
 }
 
 .chat-column {
@@ -81,7 +87,7 @@ div {
 }
 
 #scrollingChat {
-  margin: 0.75rem;
+  margin: -15px;
   overflow-y: auto;
   overflow-x: hidden;
   height: calc(100% - 4rem);
@@ -114,14 +120,15 @@ div {
 
 .from-user {
   text-align: right;
+  padding-right: 7px;
 }
 
 .from-user .message-inner {
   position: relative;
-  font-size: 1rem;
+  font-size: 15px;
   color: #fff;
   letter-spacing: 0.015rem;
-  line-height: 1.3125rem;
+  line-height: 15px;
   background: #00B4A0;
   border-radius: 1.25rem;
   border-bottom-right-radius: 0;
@@ -164,10 +171,10 @@ div {
 .from-watson .message-inner {
   position: relative;
   border-radius: 1.5625rem;
-  font-size: 1rem;
+  font-size: 15px;
   color: #B5B5B5;
   letter-spacing: 0.015rem;
-  line-height: 1.3125rem;
+  line-height: 18px;
 }
 
 .from-watson.latest .message-inner {
@@ -175,7 +182,7 @@ div {
 }
 
 .from-watson p {
-  margin: 0.3125rem;
+  margin: 1.313rem;
   padding: 0 1.25rem;
 }
 
@@ -196,16 +203,14 @@ div {
   border: none;
   outline: none;
   background: transparent;
-  font-size: 1rem;
+  font-weight: 0px;
   color: #323232;
-  letter-spacing: 0.015rem;
-  line-height: 1.3125rem;
+  letter-spacing: 0.015rem;  
   height: 2.5rem;
-  max-width: 100%;
-  padding-left: 0.125rem;
+  width: 45px;
+  max-width: 100%;  
   margin-bottom: -0.125rem;
   font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
-
 }
 
 #textInput.underline {
@@ -239,6 +244,7 @@ input:-moz-placeholder {
   border-bottom: 0.0625rem solid #aeaeae;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  margin-top:40px;
 }
 
 #textInputDummy {
@@ -257,9 +263,7 @@ input:-moz-placeholder {
   background-color: #23292A;
   color: #fff;
   overflow-x: auto;
-
-  width: 45%;
-  max-width: 32.0625rem;
+  width: 34%;  
   min-width: 29.6875rem;
 }
 
@@ -299,7 +303,7 @@ pre {
 }
 
 .string {
-  color: #54EED0;
+  color: #08866D;
 }
 
 .boolean, .null, .number {
@@ -307,7 +311,7 @@ pre {
 }
 
 .key {
-  color: #66B7FF;
+  color: #237CCB;
 }
 
 html{

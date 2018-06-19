@@ -114,7 +114,7 @@ var ConversationPanel = (function() {
           padding = maxPadding;
         }
 
-        var widthValue = ( dummy.offsetWidth + padding) + 'px';
+        var widthValue = ( dummy.offsetWidth + padding) + 2 +'px';
         input.setAttribute('style', 'width:' + widthValue);
         input.style.width = widthValue;
       }

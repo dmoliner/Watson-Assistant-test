@@ -23,8 +23,10 @@
   ConversationPanel.init();
   PayloadPanel.init();
   console.log("cargando..");
-  /*var cheerio = require('cheerio')
-  var $ = cheerio.load(mainPageContent);
-  $('iframe').attr('https://www.google.com/');
-  */
+  function watsonButton(){    
+    alert("boton de watson OK");
+  //window.open("https://bit.ly/2HGlPP9", "_blank", "toolbar=no,scrollbars=no,resizable=no,top=200,left=800,width=400,height=400");
+};
+
+  
   })();
