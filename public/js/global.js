@@ -22,11 +22,4 @@
   // Initialize all modules
   ConversationPanel.init();
   PayloadPanel.init();
-  console.log("cargando..");
-  function watsonButton(){    
-    alert("boton de watson OK");
-  //window.open("https://bit.ly/2HGlPP9", "_blank", "toolbar=no,scrollbars=no,resizable=no,top=200,left=800,width=400,height=400");
-};
-
-  
-  })();
+})();

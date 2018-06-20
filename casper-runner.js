@@ -51,13 +51,3 @@ function run() {
         runTests();
     });
 }
-
-if (process.env.WORKSPACE_ID) {
-    run();
-} else {
-    // eslint-disable-next-line
-    console.warn('Skipping casper tests because WORKSPACE_ID is null');
-    // TODO: Determine why following station fails in this repo, but not in
-    // conversation-simple
-    // return;
-}

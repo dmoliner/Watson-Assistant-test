@@ -16,15 +16,9 @@
 
 'use strict';
 
-var WatsonConversationSetup = require('./lib/watson-conversation-setup');
-var DEFAULT_NAME = 'watson-conversation-slots-intro';
-var fs = require('fs'); // file system for loading JSON
-var vcapServices = require('vcap_services');
-var conversationCredentials = vcapServices.getCredentials('conversation');
-var watson = require('watson-developer-cloud'); // watson sdk
-
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
+var watson = require('watson-developer-cloud'); // watson sdk
 
 var app = express();
 
@@ -32,48 +26,34 @@ var app = express();
 app.use(express.static('./public')); // load UI from public folder
 app.use(bodyParser.json());
 
-var workspaceID; // workspaceID will be set when the workspace is created or validated.
-
 // Create the service wrapper
-var conversation = watson.conversation({
-  url: conversationCredentials.url,
-  username: conversationCredentials.username,
-  password: conversationCredentials.password,
-  version_date: '2016-07-11',
-  version: 'v1'
-});
 
-var conversationSetup = new WatsonConversationSetup(conversation);
-var workspaceJson = JSON.parse(fs.readFileSync('data/watson-pizzeria.json'));
-var conversationSetupParams = { default_name: DEFAULT_NAME, workspace_json: workspaceJson };
-conversationSetup.setupConversationWorkspace(conversationSetupParams, (err, data) => {
-  if (err) {
-    //handleSetupError(err);
-  } else {
-    console.log('Assistant is ready!');
-    workspaceID = data;
-  }
+var assistant = new watson.AssistantV1({
+  // If unspecified here, the ASSISTANT_USERNAME and ASSISTANT_PASSWORD env properties will be checked
+  // After that, the SDK will fall back to the bluemix-provided VCAP_SERVICES environment property
+  username: process.env.ASSISTANT_USERNAME,
+  password: process.env.ASSISTANT_PASSWORD,
+  version: '2018-02-16'
 });
 
 // Endpoint to be call from the client side
 app.post('/api/message', function(req, res) {
-
-  if (!workspaceID) {
+  var workspace = process.env.WORKSPACE_ID;
+  if (!workspace) {
     return res.json({
-      output: {
-        text: 'Assistant initialization in progress. Please try again.'
+      'output': {
+        'text': 'The app has not been configured with a <b>WORKSPACE_ID</b> environment variable. Please refer to the ' + '<a href="https://github.com/watson-developer-cloud/assistant-simple">README</a> documentation on how to set this variable. <br>' + 'Once a workspace has been defined the intents may be imported from ' + '<a href="https://github.com/watson-developer-cloud/assistant-simple/blob/master/training/car_workspace.json">here</a> in order to get a working application.'
       }
     });
   }
-
   var payload = {
-    workspace_id: workspaceID,
+    workspace_id: workspace,
     context: req.body.context || {},
     input: req.body.input || {}
   };
 
-  // Send the input to the conversation service
-  conversation.message(payload, function(err, data) {
+  // Send the input to the assistant service
+  assistant.message(payload, function(err, data) {
     if (err) {
       return res.status(err.code || 500).json(err);
     }
