@@ -10,10 +10,16 @@ label{
   width: 200px;
   height: 200px;
 }
+html{
+  height: 100%;
+}
 body {
   font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-image: url('https://bit.ly/2JEgqgA');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 div {
@@ -183,7 +189,7 @@ div {
 
 .from-watson p {
   margin: 1.313rem;
-  padding: 0 1.25rem;
+  padding: 0;
 }
 
 .from-watson.latest.top p:before {
@@ -197,6 +203,7 @@ div {
   width: 0.3125rem;
   height: 1.3125rem;
   line-height: 1.3125rem;
+  top: 2px;
 }
 
 #textInput {
